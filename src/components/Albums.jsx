@@ -57,7 +57,7 @@ export function Albums() {
       setTimeout(() => {
         window.scrollTo(0, localStorage.getItem("scrollY"));
         localStorage.removeItem("scrollY");
-      }, 600);
+      }, 1000);
     }
   }, []);
 
@@ -89,9 +89,6 @@ export function Albums() {
     return (
       albums && (
         <>
-          <ButtonContainer>
-            <RouterLink to="/db">Update Library</RouterLink>
-          </ButtonContainer>
           {renderYearsAndAlbums()}
         </>
       )

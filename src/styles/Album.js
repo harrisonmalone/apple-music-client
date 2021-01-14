@@ -6,7 +6,7 @@ export const AlbumDiv = styled.div`
 `;
 
 export const Name = styled.p`
-  margin: 0px;
+  margin: 10 0px;
   height: 70px;
   a {
     color: black;
