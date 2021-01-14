@@ -52,15 +52,6 @@ export function Albums() {
     fetchAlbums();
   }, []);
 
-  useEffect(() => {
-    if (localStorage.getItem("scrollY")) {
-      setTimeout(() => {
-        window.scrollTo(0, localStorage.getItem("scrollY"));
-        localStorage.removeItem("scrollY");
-      }, 1000);
-    }
-  }, []);
-
   function renderYearsAndAlbums() {
     return albumYearGroups.map((albumYearGroup, index) => {
       return (

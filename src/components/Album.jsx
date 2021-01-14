@@ -9,7 +9,7 @@ export function Album({ album }) {
     <AlbumDiv>
       <div style={{ margin: "0px 10px" }}>
         {album.wikipedia ? (
-          <a href={album.wikipedia}>
+          <a href={album.wikipedia} target="_blank" rel="noreferrer">
             <Artwork imageUrl={album.image_url} />
           </a>
         ) : <Artwork imageUrl={album.image_url} />}
@@ -18,7 +18,6 @@ export function Album({ album }) {
             icon={faInfoCircle}
             style={{ cursor: "pointer" }}
             onClick={(e) => {
-              localStorage.setItem("scrollY", window.scrollY);
               history.push(`/albums/${album.id}`, { album });
             }}
           />

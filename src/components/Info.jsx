@@ -109,8 +109,7 @@ export function Info(props) {
           <Button
             href="/"
             onClick={(e) => {
-              e.preventDefault();
-              history.push("/");
+              history.goBack();
             }}
           >
             Back

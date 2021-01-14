@@ -12,3 +12,18 @@ export const Header = styled.a`
   text-decoration: none;
   cursor: pointer;
 `;
+
+export const Nav = styled.nav`
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  position: sticky; 
+  top: 0; 
+  background: white;
+`
+
+export const SettingsLink = styled.a`
+  color: black;
+  border-bottom: 1px dotted black;
+  text-decoration: none;
+`
