@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 
 export function AppleMusicData({ appleMusic, loading }) {
   const [checkedAlbumIds, setCheckedAlbumsIds] = useState([]);
+  const history = useHistory()
 
   function handleChecked(e) {
     if (!checkedAlbumIds.includes(e.target.id)) {
@@ -24,7 +26,7 @@ export function AppleMusicData({ appleMusic, loading }) {
         },
         body: JSON.stringify({ albums }),
       });
-
+      history.push("/")
     } catch (err) {
       console.log(err);
     }
