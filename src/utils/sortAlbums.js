@@ -26,6 +26,16 @@ export function sortAlbumsByYear(flattenedAlbums) {
   });
 }
 
+export function sortAlbumsByTitle(flattenedAlbums) {
+  return flattenedAlbums.sort((a, b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+}
+
 export function getAlbumArt(sortedAlbumsByYear) {
   return new Promise((resolve, reject) => {
     const artwork = sortedAlbumsByYear.map((album) => {
@@ -62,4 +72,26 @@ export function createAlbumYearGroups(sortedAlbumsByYear) {
     }
   });
   return chunkedAlbums;
+}
+
+export function createAlbumLetterGroups(sortedAlbumsByTitle) {
+  const chunkedAlbums = [];
+  let group = [];
+  let numbers = [];
+  sortedAlbumsByTitle.forEach((album, index) => {
+    album.index = index;
+    if (parseInt(album.title.substring(0, 1))) {
+      numbers.push(album);
+    } else if (
+      sortedAlbumsByTitle[index + 1]?.title.substring(0, 1).toLowerCase() !==
+      album.title.substring(0, 1).toLowerCase()
+    ) {
+      group.push(album);
+      chunkedAlbums.push(group);
+      group = [];
+    } else {
+      group.push(album);
+    }
+  });
+  return [numbers, ...chunkedAlbums];
 }

@@ -7,7 +7,7 @@ export function Settings() {
     JSON.parse(localStorage.getItem("appleMusic")) || []
   );
   const [loading, setLoading] = useState(false);
-  const [checked, setChecked] = useState([true, false, false]);
+  const [checked, setChecked] = useState(null);
 
   function fetchData(e) {
     e.preventDefault();
@@ -33,15 +33,29 @@ export function Settings() {
   }
 
   useEffect(() => {
-    localStorage.setItem("sort", checked.indexOf(true))
-  }, [checked])
+  }, [checked]);
 
-  console.log(checked);
-  return (
+  useEffect(() => {
+    const sort = localStorage.getItem("sort");
+    if (sort === "1") {
+      setChecked([false, true, false]);
+    } else if (sort === "2") {
+      setChecked([false, false, true]);
+    } else {
+      setChecked([true, false, false]);
+    }
+  }, []);
+
+  function setSortInLocalStorage(e) {
+    e.preventDefault()
+    localStorage.setItem("sort", checked.indexOf(true));
+  }
+
+  return checked && (
     <>
       <h2>Sorting</h2>
       <div>
-        <form>
+        <form onSubmit={setSortInLocalStorage}>
           <input
             type="radio"
             name="sorting"
@@ -71,6 +85,9 @@ export function Settings() {
           <label htmlFor="alphabetical-album-order">
             Sort alphabetically by album name
           </label>
+          <div style={{ margin: "10px 0px"}}>
+            <input type="submit" value="Submit"/>
+          </div>
         </form>
       </div>
       <h2>Apple Music</h2>
