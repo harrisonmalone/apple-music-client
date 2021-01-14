@@ -1,6 +1,6 @@
 import { AlbumDiv, Artwork, Name } from "../styles/Album";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 
 export function Album({ album }) {
