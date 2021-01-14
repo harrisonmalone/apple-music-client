@@ -6,7 +6,6 @@ import { setupMusicKit } from "../utils/appleMusic";
 
 export function Album({ album }) {
   const history = useHistory();
-  const appleMusic = JSON.parse(localStorage.getItem("appleMusic"));
 
   return (
     <AlbumDiv>
@@ -31,16 +30,13 @@ export function Album({ album }) {
             style={{ cursor: "pointer" }}
             onClick={(e) => {
               e.preventDefault();
-              const appleMusicAlbum = appleMusic.find((a) => {
-                return a.attributes.name === album.title
-              })
-              if (!appleMusicAlbum) {
+              if (!album.apple_music_id) {
                 alert("Album can't be played!")
                 return
               }
               setupMusicKit()
               .then((music) => {
-                music.setQueue({ album: appleMusicAlbum.id })
+                music.setQueue({ album: album.apple_music_id })
                 .then(() => {
                   music.play();
                 })
