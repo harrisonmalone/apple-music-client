@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const AlbumDiv = styled.div`
   width: 300px;
   margin: 20px 0px;
+  @media only screen and (max-width: 450px) {
+    width: 100%;
+  }
 `;
 
 export const Name = styled.p`
@@ -26,4 +29,7 @@ export const Artwork = styled.div.attrs((props) => ({
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid brown;
+  @media only screen and (max-width: 450px) {
+    height: 400px;
+  }
 `;
