@@ -32,8 +32,12 @@ export function Album({ album }) {
             onClick={(e) => {
               e.preventDefault();
               const appleMusicAlbum = appleMusic.find((a) => {
-                return a.imageUrl === album.image_url
+                return a.attributes.name === album.title
               })
+              if (!appleMusicAlbum) {
+                alert("Album can't be played!")
+                return
+              }
               setupMusicKit()
               .then((music) => {
                 music.setQueue({ album: appleMusicAlbum.id })
