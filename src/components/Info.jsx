@@ -13,8 +13,6 @@ export function Info(props) {
   const [image, setImage] = useState(album.image_url);
   const [wikipedia, setWikipedia] = useState(album.wikipedia);
   const [pitchfork, setPitchfork] = useState(album.pitchfork);
-  console.log(image);
-  console.log(wikipedia);
 
   async function onFormSubmit(e) {
     e.preventDefault();

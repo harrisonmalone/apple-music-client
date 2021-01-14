@@ -59,27 +59,25 @@ export function Database() {
     });
     if (selection) {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/albums/destroy`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/albums/destroy`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ albums }),
         });
-        console.log(response);
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/albums/create`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/albums/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ albums }),
         });
-        console.log(response);
       } catch (err) {
         console.log(err);
       }

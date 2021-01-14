@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createAlbumYearGroups } from "../utils/sortAlbums";
 import { Year } from "./Year";
 import { Album } from "./Album";
-import { ButtonContainer, RouterLink } from "../styles/Albums";
+import { RouterLink } from "../styles/Albums";
 import { fetchFromApple } from "../utils/seedMusic";
 
 export function Albums() {

@@ -1,4 +1,4 @@
-import { AlbumDiv, Artwork, Name } from "../styles/Album";
+import { AlbumDiv, Artwork } from "../styles/Album";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
@@ -8,12 +8,11 @@ export function Album({ album }) {
   return (
     <AlbumDiv>
       <div style={{ margin: "0px 10px" }}>
-        <Name>
-          <a href={album.wikipedia} target="_blank" rel="noreferrer">
-            {album.artist} - {album.title}
+        {album.wikipedia ? (
+          <a href={album.wikipedia}>
+            <Artwork imageUrl={album.image_url} />
           </a>
-        </Name>
-        <Artwork imageUrl={album.image_url} />
+        ) : <Artwork imageUrl={album.image_url} />}
         <div style={{ margin: "10px 0px" }}>
           <FontAwesomeIcon
             icon={faInfoCircle}
