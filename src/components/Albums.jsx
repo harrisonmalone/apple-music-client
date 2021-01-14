@@ -57,7 +57,7 @@ export function Albums() {
       setTimeout(() => {
         window.scrollTo(0, localStorage.getItem("scrollY"));
         localStorage.removeItem("scrollY");
-      }, 1000);
+      }, 600);
     }
   }, []);
 
