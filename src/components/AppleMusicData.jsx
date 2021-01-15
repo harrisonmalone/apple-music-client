@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
+import { SettingsLink } from '../styles/App'
 
 export function AppleMusicData({ appleMusic, loading }) {
   const [checkedAlbumIds, setCheckedAlbumsIds] = useState([]);
@@ -55,7 +56,7 @@ export function AppleMusicData({ appleMusic, loading }) {
                 );
               })}
           </form>
-          <a href="/" onClick={onFormSubmit}>Add new albums</a>
+          <SettingsLink to="/" onClick={onFormSubmit}>Add new albums</SettingsLink>
         </>
       )
     );
