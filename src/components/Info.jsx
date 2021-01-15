@@ -39,7 +39,7 @@ export function Info(props) {
   }
 
   async function onDeleteClick(e) {
-    e.preventDefault()
+    e.preventDefault();
     if (window.confirm("Are you sure you want to delete the album?")) {
       try {
         await fetch(`${process.env.REACT_APP_BACKEND_URL}/albums/destroy`, {
@@ -48,7 +48,7 @@ export function Info(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id
+            id,
           }),
         });
         history.push("/");
@@ -126,7 +126,9 @@ export function Info(props) {
           <Button type="submit" onClick={onFormSubmit}>
             Edit
           </Button>
-          <Button href="/" onClick={onDeleteClick}>Delete</Button>
+          <Button href="/" onClick={onDeleteClick}>
+            Delete
+          </Button>
           <Button
             href="/"
             onClick={(e) => {

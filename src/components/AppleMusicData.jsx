@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
-import { SettingsLink } from '../styles/App'
+import { useHistory } from "react-router-dom";
+import { SettingsLink } from "../styles/App";
 
 export function AppleMusicData({ appleMusic, loading }) {
   const [checkedAlbumIds, setCheckedAlbumsIds] = useState([]);
-  const history = useHistory()
+  const history = useHistory();
 
   function handleChecked(e) {
     if (!checkedAlbumIds.includes(e.target.id)) {
@@ -27,7 +27,7 @@ export function AppleMusicData({ appleMusic, loading }) {
         },
         body: JSON.stringify({ albums }),
       });
-      history.push("/")
+      history.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -37,28 +37,35 @@ export function AppleMusicData({ appleMusic, loading }) {
     return <h1>Loading...</h1>;
   } else {
     return (
-      (
-        <>
-          <form style={{ height: "400px", overflow: "scroll", margin: "20px 0px", border: "1px solid black" }}>
-            {appleMusic.map((album, index) => {
-                return (
-                  <div style={{ margin: "10px 0px" }} key={index}>
-                    <input
-                      type="checkbox"
-                      name={album.attributes.name}
-                      id={album.id}
-                      onChange={handleChecked}
-                    />
-                    <label htmlFor={album.id}>
-                      {album.attributes.artistName} - {album.attributes.name}
-                    </label>
-                  </div>
-                );
-              })}
-          </form>
-          <SettingsLink to="/" onClick={onFormSubmit}>Add new albums</SettingsLink>
-        </>
-      )
+      <>
+        <form
+          style={{
+            height: "400px",
+            overflow: "scroll",
+            margin: "20px 0px",
+            border: "1px solid black",
+          }}
+        >
+          {appleMusic.map((album, index) => {
+            return (
+              <div style={{ margin: "10px 0px" }} key={index}>
+                <input
+                  type="checkbox"
+                  name={album.attributes.name}
+                  id={album.id}
+                  onChange={handleChecked}
+                />
+                <label htmlFor={album.id}>
+                  {album.attributes.artistName} - {album.attributes.name}
+                </label>
+              </div>
+            );
+          })}
+        </form>
+        <SettingsLink to="/" onClick={onFormSubmit}>
+          Add new albums
+        </SettingsLink>
+      </>
     );
   }
 }

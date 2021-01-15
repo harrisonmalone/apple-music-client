@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AppleMusicData } from "./AppleMusicData";
 import { fetchFromApple } from "../utils/seedMusic";
-import { SettingsLink } from '../styles/App'
+import { SettingsLink } from "../styles/App";
 
 export function Settings() {
   const [appleMusic, setAppleMusic] = useState(
@@ -16,7 +16,7 @@ export function Settings() {
     fetchFromApple()
       .then((albums) => {
         if (!albums) {
-          alert("apple music or spotify api failed")
+          alert("apple music or spotify api failed");
           localStorage.setItem("appleMusic", JSON.stringify([]));
         } else {
           localStorage.setItem("appleMusic", JSON.stringify(albums));
@@ -38,8 +38,7 @@ export function Settings() {
     setChecked(newChecked);
   }
 
-  useEffect(() => {
-  }, [checked]);
+  useEffect(() => {}, [checked]);
 
   useEffect(() => {
     const sort = localStorage.getItem("sort");
@@ -53,75 +52,79 @@ export function Settings() {
   }, []);
 
   function setSortInLocalStorage(e) {
-    e.preventDefault()
+    e.preventDefault();
     localStorage.setItem("sort", checked.indexOf(true));
   }
 
-  return checked && (
-    <>
-      <h3>Sorting</h3>
-      <div>
-        <form onSubmit={setSortInLocalStorage}>
-          <div style={{ margin: "10px 0px"}}>
-            <input
-              type="radio"
-              name="sorting"
-              id="0"
-              value="order"
-              checked={checked[0]}
-              onChange={setCheckedCallback}
-            />
-            <label htmlFor="reverse-order">Sort in order by year</label>
-          </div>
-          <div style={{ margin: "10px 0px"}}>
-            <input
-              type="radio"
-              name="sorting"
-              id="1"
-              value="reverse-order"
-              checked={checked[1]}
-              onChange={setCheckedCallback}
-            />
-            <label htmlFor="reverse-order">Sort in reverse order by year</label>
-          </div>
-          <div style={{ margin: "10px 0px"}}>
-            <input
-              type="radio"
-              name="sorting"
-              id="2"
-              value="alphabetical-album-order"
-              checked={checked[2]}
-              onChange={setCheckedCallback}
-            />
-            <label htmlFor="alphabetical-album-order">
-              Sort alphabetically by album name
-            </label>
-          </div>
-          <div style={{ margin: "10px 0px"}}>
-            <input type="submit" value="Submit"/>
-          </div>
-        </form>
-      </div>
-      <hr/>
-      <h3>Apple Music</h3>
-      <div>
-        <SettingsLink to="/settings" onClick={fetchData}>
-          Fetch data
-        </SettingsLink>
-      </div>
-      <div>
-        <SettingsLink
-          to="/settings"
-          onClick={(e) => {
-            e.preventDefault();
-            localStorage.removeItem("appleMusic");
-            setAppleMusic([])
-          }}
-        >
-          Remove local storage
-        </SettingsLink>
-      </div>
-      <AppleMusicData appleMusic={appleMusic} loading={loading} />
-    </>
+  return (
+    checked && (
+      <>
+        <h3>Sorting</h3>
+        <div>
+          <form onSubmit={setSortInLocalStorage}>
+            <div style={{ margin: "10px 0px" }}>
+              <input
+                type="radio"
+                name="sorting"
+                id="0"
+                value="order"
+                checked={checked[0]}
+                onChange={setCheckedCallback}
+              />
+              <label htmlFor="reverse-order">Sort in order by year</label>
+            </div>
+            <div style={{ margin: "10px 0px" }}>
+              <input
+                type="radio"
+                name="sorting"
+                id="1"
+                value="reverse-order"
+                checked={checked[1]}
+                onChange={setCheckedCallback}
+              />
+              <label htmlFor="reverse-order">
+                Sort in reverse order by year
+              </label>
+            </div>
+            <div style={{ margin: "10px 0px" }}>
+              <input
+                type="radio"
+                name="sorting"
+                id="2"
+                value="alphabetical-album-order"
+                checked={checked[2]}
+                onChange={setCheckedCallback}
+              />
+              <label htmlFor="alphabetical-album-order">
+                Sort alphabetically by album name
+              </label>
+            </div>
+            <div style={{ margin: "10px 0px" }}>
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+        <hr />
+        <h3>Apple Music</h3>
+        <div>
+          <SettingsLink to="/settings" onClick={fetchData}>
+            Fetch data
+          </SettingsLink>
+        </div>
+        <div>
+          <SettingsLink
+            to="/settings"
+            onClick={(e) => {
+              e.preventDefault();
+              localStorage.removeItem("appleMusic");
+              setAppleMusic([]);
+            }}
+          >
+            Remove local storage
+          </SettingsLink>
+        </div>
+        <AppleMusicData appleMusic={appleMusic} loading={loading} />
+      </>
+    )
   );
 }
