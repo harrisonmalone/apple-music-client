@@ -1,11 +1,18 @@
+import React, { useState } from "react";
 import { AlbumDiv, Artwork } from "../styles/Album";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faPlay } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInfoCircle,
+  faPlay,
+  faStop,
+} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import { setupMusicKit } from "../utils/appleMusic";
 
 export function Album({ album }) {
   const history = useHistory();
+  const [stop, setStop] = useState(false);
+  const [musicKitInstance, setMusicKitInstance] = useState(null);
 
   return (
     <AlbumDiv>
@@ -25,24 +32,37 @@ export function Album({ album }) {
               history.push(`/albums/${album.id}`, { album });
             }}
           />
-          <FontAwesomeIcon
-            icon={faPlay}
-            style={{ cursor: "pointer" }}
-            onClick={(e) => {
-              e.preventDefault();
-              if (!album.apple_music_id) {
-                alert("Album can't be played!")
-                return
-              }
-              setupMusicKit()
-              .then((music) => {
-                music.setQueue({ album: album.apple_music_id })
-                .then(() => {
-                  music.play();
-                })
-              })
-            }}
-          />
+          {stop ? (
+            <FontAwesomeIcon
+              icon={faStop}
+              style={{ cursor: "pointer" }}
+              onClick={(e) => {
+                e.preventDefault();
+                musicKitInstance.stop();
+                setStop(false);
+              }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faPlay}
+              style={{ cursor: "pointer" }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (!album.apple_music_id) {
+                  alert("Album can't be played!");
+                  return;
+                }
+                setupMusicKit().then((music) => {
+                  console.log("herererrerere")
+                  music.setQueue({ album: album.apple_music_id }).then(() => {
+                    music.play();
+                    setStop(true);
+                    setMusicKitInstance(music);
+                  });
+                });
+              }}
+            />
+          )}
         </div>
       </div>
     </AlbumDiv>

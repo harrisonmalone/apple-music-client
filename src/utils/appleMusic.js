@@ -8,7 +8,6 @@ export function setupMusicKit() {
           build: "1.0.0",
         },
       });
-      delete window.MusicKit;
       resolve(musicKitInstance);
     }
   });
