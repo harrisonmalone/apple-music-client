@@ -15,9 +15,14 @@ export function Settings() {
     setLoading(true);
     fetchFromApple()
       .then((albums) => {
-        localStorage.setItem("appleMusic", JSON.stringify(albums));
-        setAppleMusic(albums);
-        setLoading(false);
+        if (!albums) {
+          alert("apple music or spotify api failed")
+          localStorage.setItem("appleMusic", JSON.stringify([]));
+        } else {
+          localStorage.setItem("appleMusic", JSON.stringify(albums));
+          setAppleMusic(albums);
+          setLoading(false);
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -110,6 +115,7 @@ export function Settings() {
           onClick={(e) => {
             e.preventDefault();
             localStorage.removeItem("appleMusic");
+            setAppleMusic([])
           }}
         >
           Remove local storage
