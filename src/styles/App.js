@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   max-width: 900px;
@@ -7,7 +8,7 @@ export const Container = styled.div`
   font-size: large;
 `;
 
-export const Header = styled.a`
+export const Header = styled(Link)`
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -22,7 +23,7 @@ export const Nav = styled.nav`
   background: white;
 `
 
-export const SettingsLink = styled.a`
+export const SettingsLink = styled(Link)`
   color: black;
   border-bottom: 1px dotted black;
   text-decoration: none;

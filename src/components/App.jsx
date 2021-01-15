@@ -10,9 +10,9 @@ export function App() {
     <Container>
         <Nav>
           <h1>
-            <Header href="/">Music</Header>
+            <Header to="/">Music</Header>
           </h1>
-          <SettingsLink href="/settings">Settings</SettingsLink>
+          <SettingsLink to="/settings">Settings</SettingsLink>
         </Nav>
       <Switch>
         <Route exact path={["/", "/albums"]} component={Albums} />

@@ -53,7 +53,6 @@ export function Album({ album }) {
                   return;
                 }
                 setupMusicKit().then((music) => {
-                  console.log("herererrerere")
                   music.setQueue({ album: album.apple_music_id }).then(() => {
                     music.play();
                     setStop(true);
